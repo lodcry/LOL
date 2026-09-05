@@ -26,10 +26,24 @@ workflows:
           fi
           echo "✅ Godot instalado"
 
+      - name: Gerar keystore debug
+        script: |
+          keytool -genkey -v \
+            -keystore debug.keystore \
+            -alias androiddebugkey \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -storepass android \
+            -keypass android \
+            -dname "CN=Android Debug,O=Android,C=US"
+          echo "✅ Keystore debug gerado"
+
       - name: Exportar APK Android
         script: |
           mkdir -p build
           godot --headless --export-debug "Android" build/Ventory.apk --path .
+          echo "✅ APK gerado"
 
     artifacts:
       - build/Ventory.apk
