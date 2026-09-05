@@ -4,25 +4,29 @@ workflows:
     max_build_duration: 120
     environment:
       unity: 2022.3.22f1
+      vars:
+        UNITY_EMAIL: $UNITY_EMAIL
+        UNITY_PASSWORD: $UNITY_PASSWORD
     scripts:
-      - name: Gerar arquivo de licenca
+      - name: Ativar Unity Personal online
         script: |
           arch -x86_64 $UNITY_HOME/Contents/MacOS/Unity \
             -batchmode \
-            -createManualActivationFile \
+            -logFile /dev/stdout \
+            -username "$UNITY_EMAIL" \
+            -password "$UNITY_PASSWORD" \
+            -serial "" \
             -quit || true
 
-          echo "=== Procurando .alf ==="
-          find /Users /tmp -name "*.alf" 2>/dev/null
-
-          ALF=$(find /Users /tmp -name "*.alf" 2>/dev/null | head -1)
-
-          if [ -n "$ALF" ]; then
-            echo "✅ Encontrado: $ALF"
-            cp "$ALF" "$CM_BUILD_DIR/Unity_activation.alf"
-          else
-            echo "❌ nao encontrado"
-          fi
+      - name: Build APK Android
+        script: |
+          arch -x86_64 $UNITY_HOME/Contents/MacOS/Unity \
+            -batchmode -quit \
+            -logFile /dev/stdout \
+            -projectPath . \
+            -buildTarget Android \
+            -executeMethod BuildScript.BuildAndroid \
+            -nographics
 
     artifacts:
-      - Unity_activation.alf
+      - "*.apk"
