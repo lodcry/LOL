@@ -1,0 +1,23 @@
+workflows:
+  ventory-android:
+    name: Ventory Android Build
+    max_build_duration: 90
+    environment:
+      unity: 2022.3.20f1
+      android_signing:
+        - keystore_reference
+      vars:
+        UNITY_LICENSE: $UNITY_LICENSE
+    scripts:
+      - name: Ativar Unity
+        script: |
+          unity-activate
+      - name: Build Android
+        script: |
+          unity-build -buildTarget Android -scriptingBackend IL2CPP -buildOutput build/Ventory.apk
+    artifacts:
+      - build/Ventory.apk
+    publishing:
+      email:
+        recipients:
+          - seu@email.com

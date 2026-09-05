@@ -1,0 +1,16 @@
+{
+  "itens": [
+    {"id": "espada_longa", "nome": "Espada Longa", "custo": 350, "tipo": "basico", "dano_fisico": 10},
+    {"id": "anel_de_doran", "nome": "Anel de Doran", "custo": 400, "tipo": "inicial", "hp": 70, "mana": 50, "poder_magico": 15},
+    {"id": "lamina_de_doran", "nome": "Lâmina de Doran", "custo": 450, "tipo": "inicial", "hp": 80, "dano_fisico": 8, "roubo_de_vida": 3},
+    {"id": "escudo_de_doran", "nome": "Escudo de Doran", "custo": 450, "tipo": "inicial", "hp": 120, "armadura": 6},
+    {"id": "poção", "nome": "Poção de Vida", "custo": 50, "tipo": "consumivel", "cura": 150},
+    {"id": "bota_velocidade", "nome": "Botas de Velocidade", "custo": 300, "tipo": "bota", "velocidade": 45},
+    {"id": "bota_magica", "nome": "Sapatos de Feiticeiro", "custo": 1100, "tipo": "bota", "velocidade": 45, "penetracao_magica": 18},
+    {"id": "bota_tabis", "nome": "Grevas de Aço", "custo": 1100, "tipo": "bota", "velocidade": 45, "armadura": 20},
+    {"id": "infinityblade", "nome": "Lâmina do Infinito", "custo": 3400, "tipo": "lendario", "dano_fisico": 70, "chance_critico": 20, "passiva": "Dano crítico aumentado em 35%"},
+    {"id": "rabadons", "nome": "Chapéu de Rabadon", "custo": 3600, "tipo": "lendario", "poder_magico": 120, "passiva": "Aumenta poder mágico total em 35%"},
+    {"id": "trinity_force", "nome": "Força da Trindade", "custo": 3333, "tipo": "lendario", "dano_fisico": 35, "velocidade_ataque": 35, "velocidade": 20, "passiva": "Spellblade — após habilidade próximo ataque causa dano bônus"},
+    {"id": "sunfire_aegis", "nome": "Égide Sunfire", "custo": 3000, "tipo": "lendario", "hp": 450, "armadura": 35, "passiva": "Queima inimigos próximos causando dano mágico por segundo"}
+  ]
+}

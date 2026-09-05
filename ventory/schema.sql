@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS jogadores (
+  id TEXT PRIMARY KEY,
+  nome TEXT UNIQUE NOT NULL,
+  senha_hash TEXT NOT NULL,
+  token TEXT,
+  criado_em DATETIME DEFAULT CURRENT_TIMESTAMP
+);
