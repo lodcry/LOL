@@ -176,7 +176,7 @@ func _on_login_resultado(sucesso: bool, dados: Dictionary) -> void:
 	if sucesso:
 		_set_status("Bem-vindo, %s!" % Boot.nome_jogador, false)
 		await get_tree().create_timer(0.8).timeout
-		get_tree().change_scene_to_file("res://scenes/partida.tscn")
+		get_tree().change_scene_to_file("res://scenes/perfil.tscn")
 	else:
 		_set_status("Nome ou senha incorretos", true)
 
@@ -185,7 +185,7 @@ func _on_registro_resultado(sucesso: bool, dados: Dictionary) -> void:
 	if sucesso:
 		_set_status("Conta criada! Bem-vindo, %s!" % Boot.nome_jogador, false)
 		await get_tree().create_timer(0.8).timeout
-		get_tree().change_scene_to_file("res://scenes/partida.tscn")
+		get_tree().change_scene_to_file("res://scenes/perfil.tscn")
 	else:
 		_set_status(dados.get("erro", "Erro ao criar conta"), true)
 

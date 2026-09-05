@@ -32,3 +32,7 @@ func carregar_sessao() -> bool:
 	token = PlayerData.get_value("token", "")
 	nome_jogador = PlayerData.get_value("nome", "")
 	return token != ""
+
+var heroi_selecionado: String = "lee_sin"
+var runa_selecionada: int = 0
+var poderes_selecionados: Array = [0, 2]

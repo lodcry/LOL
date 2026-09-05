@@ -45,3 +45,11 @@ Boot="*res://scripts/core/boot_manager.gd"
 Network="*res://scripts/network/ventory_network.gd"
 Console="*res://scripts/debug/ventory_console.gd"
 WS="*res://scripts/network/sala_websocket.gd"
+
+[autoload]
+
+PlayerData="*res://scripts/core/player_data.gd"
+Boot="*res://scripts/core/boot_manager.gd"
+Network="*res://scripts/network/ventory_network.gd"
+Console="*res://scripts/debug/ventory_console.gd"
+WS="*res://scripts/network/sala_websocket.gd"
