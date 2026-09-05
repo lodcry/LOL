@@ -7,22 +7,21 @@ workflows:
     scripts:
       - name: Gerar arquivo de licenca
         script: |
-          $UNITY_HOME/Contents/MacOS/Unity \
+          arch -x86_64 $UNITY_HOME/Contents/MacOS/Unity \
             -batchmode \
             -createManualActivationFile \
             -quit || true
 
           echo "=== Procurando .alf ==="
-          find /Users /tmp /root /home -name "*.alf" 2>/dev/null
+          find /Users /tmp -name "*.alf" 2>/dev/null
 
-          ALF=$(find /Users /tmp /root /home -name "*.alf" 2>/dev/null | head -1)
+          ALF=$(find /Users /tmp -name "*.alf" 2>/dev/null | head -1)
 
           if [ -n "$ALF" ]; then
-            echo "Encontrado: $ALF"
+            echo "✅ Encontrado: $ALF"
             cp "$ALF" "$CM_BUILD_DIR/Unity_activation.alf"
-            echo "✅ Copiado para artifacts"
           else
-            echo "❌ .alf nao encontrado"
+            echo "❌ nao encontrado"
           fi
 
     artifacts:
