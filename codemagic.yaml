@@ -2,27 +2,34 @@ workflows:
   ventory-android:
     name: Ventory Android - Godot
     max_build_duration: 60
-    instance_type: linux_x2
     scripts:
       - name: Instalar Godot 4.3
         script: |
-          wget -q https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
-          unzip -q Godot_v4.3-stable_linux.x86_64.zip
-          mv Godot_v4.3-stable_linux.x86_64 /usr/local/bin/godot
-          chmod +x /usr/local/bin/godot
-          
-          wget -q https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
-          mkdir -p ~/.local/share/godot/export_templates/4.3.stable
-          unzip -q Godot_v4.3-stable_export_templates.tpz
-          mv templates/* ~/.local/share/godot/export_templates/4.3.stable/
-          
-          echo "✅ Godot 4.3 instalado"
+          if [[ "$OSTYPE" == "darwin"* ]]; then
+            wget -q https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_macos.universal.zip
+            unzip -q Godot_v4.3-stable_macos.universal.zip
+            mv Godot.app /Applications/Godot.app
+            ln -sf /Applications/Godot.app/Contents/MacOS/Godot /usr/local/bin/godot
+            mkdir -p ~/Library/Application\ Support/Godot/export_templates/4.3.stable
+            wget -q https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
+            unzip -q Godot_v4.3-stable_export_templates.tpz
+            mv templates/* ~/Library/Application\ Support/Godot/export_templates/4.3.stable/
+          else
+            wget -q https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
+            unzip -q Godot_v4.3-stable_linux.x86_64.zip
+            mv Godot_v4.3-stable_linux.x86_64 /usr/local/bin/godot
+            chmod +x /usr/local/bin/godot
+            mkdir -p ~/.local/share/godot/export_templates/4.3.stable
+            wget -q https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
+            unzip -q Godot_v4.3-stable_export_templates.tpz
+            mv templates/* ~/.local/share/godot/export_templates/4.3.stable/
+          fi
+          echo "✅ Godot instalado"
 
       - name: Exportar APK Android
         script: |
           mkdir -p build
           godot --headless --export-debug "Android" build/Ventory.apk --path .
-          echo "✅ APK gerado"
 
     artifacts:
       - build/Ventory.apk
