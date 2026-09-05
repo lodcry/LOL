@@ -1,24 +1,37 @@
 workflows:
   ventory-android:
     name: Ventory Android Build
-    max_build_duration: 90
+    max_build_duration: 120
     environment:
-      unity: 2022.3.20f1
+      unity: 2022.3.22f1
+      vars:
+        UNITY_SERIAL: $UNITY_SERIAL
+        UNITY_EMAIL: $UNITY_EMAIL
+        UNITY_PASSWORD: $UNITY_PASSWORD
     scripts:
       - name: Ativar Unity
         script: |
-          unity-activate
-      - name: Build Android
+          $UNITY_HOME/Contents/MacOS/Unity \
+            -batchmode -quit -logFile \
+            -serial $UNITY_SERIAL \
+            -username $UNITY_EMAIL \
+            -password $UNITY_PASSWORD
+      - name: Build APK Android
         script: |
-          unity-build \
+          $UNITY_HOME/Contents/MacOS/Unity \
+            -batchmode -quit -logFile \
+            -projectPath . \
             -buildTarget Android \
-            -scriptingBackend IL2CPP \
-            -developmentBuild \
-            -allowDebugging \
-            -buildOutput build/Ventory.apk
+            -executeMethod BuildScript.BuildAndroid \
+            -nographics
     artifacts:
-      - build/Ventory.apk
+      - "*.apk"
     publishing:
-      email:
-        recipients:
-          - seu@email.com
+      scripts:
+        - name: Desativar Unity
+          script: |
+            $UNITY_HOME/Contents/MacOS/Unity \
+              -batchmode -quit -logFile \
+              -returnlicense \
+              -username $UNITY_EMAIL \
+              -password $UNITY_PASSWORD
