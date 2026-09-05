@@ -1,0 +1,6 @@
+.env
+*.env
+ventory/.env
+*.keystore
+*.log
+.godot/
