@@ -1,4 +1,4 @@
-workflows:
+
   ventory-android:
     name: Ventory Android Build
     max_build_duration: 120
@@ -8,26 +8,17 @@ workflows:
         UNITY_EMAIL: $UNITY_EMAIL
         UNITY_PASSWORD: $UNITY_PASSWORD
     scripts:
-      - name: Instalar Unity ARM64 para M2
+      - name: Instalar modulos Android
         script: |
-          /Applications/Unity\ Hub.app/Contents/MacOS/Unity\ Hub \
-            -- --headless install \
-            --version 2022.3.22f1 \
-            --changeset 887be4894c44 \
-            -a arm64
-          
-          /Applications/Unity\ Hub.app/Contents/MacOS/Unity\ Hub \
+          yes n | /Applications/Unity\ Hub.app/Contents/MacOS/Unity\ Hub \
             -- --headless install-modules \
             --version 2022.3.22f1 \
-            -m android android-sdk-ndk-tools android-open-jdk \
-            -a arm64
-
-          export UNITY_HOME="/Applications/Unity/Hub/Editor/2022.3.22f1/Unity.app"
-          echo "UNITY_HOME=$UNITY_HOME" >> $CM_ENV
+            -m android android-sdk-ndk-tools \
+            -a arm64 || true
 
       - name: Ativar Unity Personal
         script: |
-          $UNITY_HOME/Contents/MacOS/Unity \
+          /Applications/Unity/Hub/Editor/2022.3.22f1/Unity.app/Contents/MacOS/Unity \
             -batchmode \
             -logFile /dev/stdout \
             -username "$UNITY_EMAIL" \
@@ -36,7 +27,7 @@ workflows:
 
       - name: Build APK Android
         script: |
-          $UNITY_HOME/Contents/MacOS/Unity \
+          /Applications/Unity/Hub/Editor/2022.3.22f1/Unity.app/Contents/MacOS/Unity \
             -batchmode -quit \
             -logFile /dev/stdout \
             -projectPath . \
