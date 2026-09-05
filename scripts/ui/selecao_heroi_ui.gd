@@ -510,4 +510,4 @@ func _confirmar_selecao() -> void:
 	Boot.runa_selecionada = runa_selecionada
 	Boot.poderes_selecionados = poderes_selecionados
 	Console.adicionar_log("[SELEÇÃO] Confirmado: %s | Runa: %s" % [h.nome, RUNAS[runa_selecionada].nome])
-	get_tree().change_scene_to_file("res://scenes/fila.tscn")
+	get_tree().change_scene_to_file("res://scenes/modo_jogo.tscn")

@@ -1,17 +1,14 @@
 [configuration]
-
 config_version=5
 
 [application]
-
 config/name="Ventory"
-config/version="0.1"
-config/features=PackedStringArray("4.3", "Mobile")
+config/version="1.0"
+config/features=PackedStringArray("4.3","Mobile")
 run/main_scene="res://scenes/login.tscn"
 config/icon="res://assets/icon.png"
 
 [display]
-
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
@@ -19,37 +16,19 @@ window/stretch/aspect="expand"
 window/handheld/orientation=1
 
 [rendering]
-
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
 
-[input]
-
-ui_accept={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194309,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)]
-}
-
 [physics]
-
 common/physics_ticks_per_second=120
 
 [debug]
-
 gdscript/warnings/unused_variable=false
 
 [autoload]
-
 PlayerData="*res://scripts/core/player_data.gd"
 Boot="*res://scripts/core/boot_manager.gd"
 Network="*res://scripts/network/ventory_network.gd"
 Console="*res://scripts/debug/ventory_console.gd"
 WS="*res://scripts/network/sala_websocket.gd"
-
-[autoload]
-
-PlayerData="*res://scripts/core/player_data.gd"
-Boot="*res://scripts/core/boot_manager.gd"
-Network="*res://scripts/network/ventory_network.gd"
-Console="*res://scripts/debug/ventory_console.gd"
-WS="*res://scripts/network/sala_websocket.gd"
+Aggro="*res://scripts/core/aggro_system.gd"

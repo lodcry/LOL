@@ -1,0 +1,24 @@
+{
+  "itens": [
+    {"nome":"Fio Infinito","custo":3400,"dano_fisico":70,"critico":20},
+    {"nome":"Lâmina do Rei Destruído","custo":3000,"dano_fisico":55,"velocidade_ataque":0.3},
+    {"nome":"Fauces de Malmortius","custo":2900,"dano_fisico":60,"resistencia_magica":50},
+    {"nome":"Capuz Fantasma de Rabadon","custo":3600,"poder_magico":120},
+    {"nome":"Cajado do Vazio","custo":2800,"poder_magico":80,"penetracao_magica":40},
+    {"nome":"Broche da Imortalidade","custo":2700,"hp":450,"poder_magico":40},
+    {"nome":"Solidez de Frostmourne","custo":2900,"hp":400,"armadura":60},
+    {"nome":"Velo Espiritual","custo":2600,"hp":400,"resistencia_magica":70},
+    {"nome":"Armadura de Warmog","custo":3100,"hp":800},
+    {"nome":"Colete de Thornmail","custo":2700,"armadura":80},
+    {"nome":"Tempestade dos Imortais","custo":3100,"dano_fisico":65,"velocidade_ataque":0.4},
+    {"nome":"Espora de Luden","custo":3200,"poder_magico":90},
+    {"nome":"Bastão de Idades","custo":2700,"hp":300,"poder_magico":60},
+    {"nome":"Machado de Hydra Titânica","custo":3300,"hp":450,"dano_fisico":40},
+    {"nome":"Pata de Dominus","custo":3100,"hp":600,"dano_fisico":45},
+    {"nome":"Foice Spectral","custo":3000,"dano_fisico":60},
+    {"nome":"Gibão de Mal do Sol","custo":2700,"hp":350,"armadura":55},
+    {"nome":"Bastão do Vazio Infinito","custo":3200,"poder_magico":80,"penetracao_magica":45},
+    {"nome":"Coroa do Demente","custo":2700,"dano_fisico":50,"poder_magico":50},
+    {"nome":"Arco Mortal","custo":2900,"dano_fisico":55}
+  ]
+}
