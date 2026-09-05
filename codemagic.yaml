@@ -5,26 +5,19 @@ workflows:
     environment:
       unity: 2022.3.22f1
     scripts:
-      - name: Ativar Unity Personal
+      - name: Gerar arquivo de licenca
         script: |
           $UNITY_HOME/Contents/MacOS/Unity \
             -batchmode \
-            -logFile /dev/stdout \
             -createManualActivationFile \
+            -logFile /dev/stdout \
             -quit || true
           
-          cat Unity_v*.alf || echo "arquivo .alf gerado"
+          ls -la $CM_BUILD_DIR
+          
+          find / -name "*.alf" 2>/dev/null | head -5
+          
+          cp $(find / -name "*.alf" 2>/dev/null | head -1) $CM_BUILD_DIR/Unity_activation.alf || echo "nao encontrado"
 
-      - name: Build APK Android
-        script: |
-          $UNITY_HOME/Contents/MacOS/Unity \
-            -batchmode -quit \
-            -logFile /dev/stdout \
-            -manualLicenseFile Unity_v*.ulc \
-            -projectPath . \
-            -buildTarget Android \
-            -executeMethod BuildScript.BuildAndroid \
-            -nographics
     artifacts:
-      - "*.apk"
-      - "*.alf"
+      - Unity_activation.alf
