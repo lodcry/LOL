@@ -10,14 +10,20 @@ workflows:
           $UNITY_HOME/Contents/MacOS/Unity \
             -batchmode \
             -createManualActivationFile \
-            -logFile /dev/stdout \
             -quit || true
-          
-          ls -la $CM_BUILD_DIR
-          
-          find / -name "*.alf" 2>/dev/null | head -5
-          
-          cp $(find / -name "*.alf" 2>/dev/null | head -1) $CM_BUILD_DIR/Unity_activation.alf || echo "nao encontrado"
+
+          echo "=== Procurando .alf ==="
+          find /Users /tmp /root /home -name "*.alf" 2>/dev/null
+
+          ALF=$(find /Users /tmp /root /home -name "*.alf" 2>/dev/null | head -1)
+
+          if [ -n "$ALF" ]; then
+            echo "Encontrado: $ALF"
+            cp "$ALF" "$CM_BUILD_DIR/Unity_activation.alf"
+            echo "✅ Copiado para artifacts"
+          else
+            echo "❌ .alf nao encontrado"
+          fi
 
     artifacts:
       - Unity_activation.alf
