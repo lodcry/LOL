@@ -4,34 +4,27 @@ workflows:
     max_build_duration: 120
     environment:
       unity: 2022.3.22f1
-      vars:
-        UNITY_SERIAL: $UNITY_SERIAL
-        UNITY_EMAIL: $UNITY_EMAIL
-        UNITY_PASSWORD: $UNITY_PASSWORD
     scripts:
-      - name: Ativar Unity
+      - name: Ativar Unity Personal
         script: |
           $UNITY_HOME/Contents/MacOS/Unity \
-            -batchmode -quit -logFile \
-            -serial $UNITY_SERIAL \
-            -username $UNITY_EMAIL \
-            -password $UNITY_PASSWORD
+            -batchmode \
+            -logFile /dev/stdout \
+            -createManualActivationFile \
+            -quit || true
+          
+          cat Unity_v*.alf || echo "arquivo .alf gerado"
+
       - name: Build APK Android
         script: |
           $UNITY_HOME/Contents/MacOS/Unity \
-            -batchmode -quit -logFile \
+            -batchmode -quit \
+            -logFile /dev/stdout \
+            -manualLicenseFile Unity_v*.ulc \
             -projectPath . \
             -buildTarget Android \
             -executeMethod BuildScript.BuildAndroid \
             -nographics
     artifacts:
       - "*.apk"
-    publishing:
-      scripts:
-        - name: Desativar Unity
-          script: |
-            $UNITY_HOME/Contents/MacOS/Unity \
-              -batchmode -quit -logFile \
-              -returnlicense \
-              -username $UNITY_EMAIL \
-              -password $UNITY_PASSWORD
+      - "*.alf"
